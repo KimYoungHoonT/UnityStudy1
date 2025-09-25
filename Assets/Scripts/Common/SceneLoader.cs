@@ -25,4 +25,12 @@ public class SceneLoader : SingletonBehaviour<SceneLoader>
         Time.timeScale = 1f; // 씬이동후 타임스케일 초기화
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public AsyncOperation LoadSceneAsync(SceneType sceneType)
+    {
+        Logger.Log($"{sceneType} scene loading...");
+
+        Time.timeScale = 1;
+        return SceneManager.LoadSceneAsync(sceneType.ToString());
+    }
 }

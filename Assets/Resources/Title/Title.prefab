@@ -415,7 +415,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _logoAnim: {fileID: 2598050423054792232}
   _logoText: {fileID: 985941267436909717}
-  Title: {fileID: 3944837077354206976}
+  _title: {fileID: 3944837077354206976}
+  _loadingSlider: {fileID: 8057107422569292640}
+  _loadingProgressText: {fileID: 7112262789865789572}
 --- !u!1 &3944837077354206976
 GameObject:
   m_ObjectHideFlags: 0
