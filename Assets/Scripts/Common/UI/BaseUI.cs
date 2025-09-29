@@ -45,15 +45,20 @@ public class BaseUI : MonoBehaviour
         // 즉, 그냥 널체크 하는것임
         if (m_UIOpenAnim != null) 
         {
+            // m_UIOpenAnim 이 있으면 플레이 해줘라
             m_UIOpenAnim.Play();
         }
-
+        
+        // 나머지 함수 걸어준거 있으면 함수 호출
         m_OnShow?.Invoke();
+        // 1회성 콜백 보장을 위함
+        // 메모리 해제 (참조 제거)
         m_OnShow = null;
     }
 
     public virtual void CloseUI(bool isCloaseAll = false)
     {
+        // 올 클로즈가 아니라면 해당하는 유아이에 대해서만 진행
         if (isCloaseAll == false)
         {
             m_OnClose?.Invoke();
@@ -63,8 +68,10 @@ public class BaseUI : MonoBehaviour
         UIManager.Instance.CloseUI(this);
     }
 
+    // 유아이에 닫기 버튼을 위한 인터페이스
     public virtual void OnClickCloseButton()
     {
+        // 버튼 클릭시 효과음 출력
         AudioManager.Instance.PlaySFX(SFX.ui_button_click);
         CloseUI();
     }
