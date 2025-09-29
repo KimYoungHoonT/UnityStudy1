@@ -18,7 +18,6 @@ public class DataTableManager : SingletonBehaviour<DataTableManager>
         base.Init();
 
         LoadChapterDataTable();
-        // otherDtatTable();
     }
 
     private void LoadChapterDataTable()

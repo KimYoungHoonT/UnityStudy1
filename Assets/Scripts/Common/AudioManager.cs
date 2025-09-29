@@ -26,7 +26,6 @@ public class AudioManager : SingletonBehaviour<AudioManager>
     private Dictionary<BGM, AudioSource> m_BGMPlayer = new Dictionary<BGM, AudioSource>();
     private AudioSource m_CurrentBGMSource;
 
-
     private Dictionary<SFX, AudioSource> m_SFXPlayer = new Dictionary<SFX, AudioSource>();
 
     protected override void Init()
