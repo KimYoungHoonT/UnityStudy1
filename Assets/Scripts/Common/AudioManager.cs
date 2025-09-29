@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public enum BGM
 {
@@ -24,8 +24,8 @@ public class AudioManager : SingletonBehaviour<AudioManager>
     private const string AUDIO_PATH = "Audio";
 
     private Dictionary<BGM, AudioSource> m_BGMPlayer = new Dictionary<BGM, AudioSource>();
-    private AudioSource m_CurrentBGMSource;
-
+    private AudioSource m_currentBGMSource;
+    
     private Dictionary<SFX, AudioSource> m_SFXPlayer = new Dictionary<SFX, AudioSource>();
 
     protected override void Init()
@@ -36,98 +36,95 @@ public class AudioManager : SingletonBehaviour<AudioManager>
         LoadSFXPlayer();
     }
 
-    // 모든 BGM 파일 목록을 순회하여, 게임오브젝트 생성 및 오디오 소스 컴퍼넌트 추가, 해당 BGM 연동
-    private void LoadBGMPlayer() // 리소스를 불러오는 단계
+    private void LoadBGMPlayer()
     {
         for (int i = 0; i < (int)BGM.COUNT; i++)
         {
             string audioName = ((BGM)i).ToString();
             string pathString = $"{AUDIO_PATH}/{audioName}";
             AudioClip audioClip = Resources.Load<AudioClip>(pathString);
-            if (audioClip == null)
+            if(audioClip == false)
             {
-                Logger.LogError($"{audioName} clip does not exist.");
+                Logger.LogError($"{audioName} clip does not exits.");
                 continue;
             }
 
-            GameObject newGo = new GameObject(audioName);
-            AudioSource newAudioSource = newGo.AddComponent<AudioSource>();
+            GameObject newGO = new GameObject(audioName);
+            AudioSource newAudioSource = newGO.AddComponent<AudioSource>();
             newAudioSource.clip = audioClip;
             newAudioSource.loop = true;
             newAudioSource.playOnAwake = false;
-
-            newGo.transform.parent = BGMTransform;
+            newGO.transform.SetParent(BGMTransform);
 
             m_BGMPlayer[(BGM)i] = newAudioSource;
         }
     }
 
-    private void LoadSFXPlayer() // 리소스를 불러오는 단계
+    private void LoadSFXPlayer()
     {
-        for (int i = 0; i < (int)SFX.COUNT; i ++)
+        for (int i = 0; i < (int)SFX.COUNT; i++)
         {
             string audioName = ((SFX)i).ToString();
             string pathString = $"{AUDIO_PATH}/{audioName}";
             AudioClip audioClip = Resources.Load<AudioClip>(pathString);
-            if (audioClip == null)
+            if (audioClip == false)
             {
-                Logger.LogError($"{audioName} clip does not exist.");
+                Logger.LogError($"{audioName} clip does not exits.");
                 continue;
             }
 
-            GameObject newGo = new GameObject(audioName);
-            AudioSource newAudioSource = newGo.AddComponent<AudioSource>();
+            GameObject newGO = new GameObject(audioName);
+            AudioSource newAudioSource = newGO.AddComponent<AudioSource>();
             newAudioSource.clip = audioClip;
             newAudioSource.loop = false;
             newAudioSource.playOnAwake = false;
-
-            newGo.transform.parent = SFXTransform;
+            newGO.transform.SetParent(SFXTransform);
 
             m_SFXPlayer[(SFX)i] = newAudioSource;
         }
     }
 
-    public void PlayBGM(BGM bgm) // BGM 실행시키기
+    public void PlayBGM(BGM bgm)
     {
-        if (m_CurrentBGMSource != null) // 현재 플레이 하는 BGM 이 있다면
+        if (m_currentBGMSource != null)
         {
-            m_CurrentBGMSource.Stop(); // 완전정지
-            m_CurrentBGMSource = null;
+            m_currentBGMSource.Stop();
+            m_currentBGMSource = null;
         }
 
-        if (m_BGMPlayer.ContainsKey(bgm) == false) // 플레이 하려는 BGM 이 없다면
+        if (m_BGMPlayer.ContainsKey(bgm) == false)
         {
-            Logger.LogError($"Invalid cilp name. {bgm}");
+            Logger.LogError($"Invalid clip name. {bgm}");
             return;
         }
 
-        m_CurrentBGMSource = m_BGMPlayer[bgm];
-        m_CurrentBGMSource.Play();
+        m_currentBGMSource = m_BGMPlayer[bgm];
+        m_currentBGMSource.Play();
     }
 
-    public void PauseBGM() // 일시정지
+    public void PauseBGM()
     {
-        if (m_CurrentBGMSource != null)
-            m_CurrentBGMSource.Pause();
+        if (m_currentBGMSource != null)
+            m_currentBGMSource.Pause();
     }
 
-    public void ResumeBGM() // 일시정지 해제
+    public void ResumeBGM()
     {
-        if (m_CurrentBGMSource != null)
-            m_CurrentBGMSource.UnPause();
+        if (m_currentBGMSource != null)
+            m_currentBGMSource.UnPause();
     }
 
-    public void StopBGM() // 완전정지
+    public void StopBGM()
     {
-        if (m_CurrentBGMSource != null)
-            m_CurrentBGMSource.Stop();
+        if (m_currentBGMSource != null)
+            m_currentBGMSource.Stop();
     }
 
     public void PlaySFX(SFX sfx)
     {
         if (m_SFXPlayer.ContainsKey(sfx) == false)
         {
-            Logger.LogError($"Invalid cilp name. {sfx}");
+            Logger.LogError($"Invalid clip name. {sfx}");
             return;
         }
 
