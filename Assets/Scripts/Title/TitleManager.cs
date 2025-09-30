@@ -32,16 +32,7 @@ public class TitleManager : MonoBehaviour
             UserDataManager.Instance.SaveUserData();
         }
 
-        // temp
-        ConfirmUIData confirmUIData = new ConfirmUIData();
-        confirmUIData.ConfirmType = ConfirmType.OK;
-        confirmUIData.TitleText = "UI TEST";
-        confirmUIData.DescText = "THIS IS UI TEST";
-        confirmUIData.OKBtnText = "OK";
-        UIManager.Instance.OpenUI<ConfirmUI>(confirmUIData);
-
-
-        //StartCoroutine(LoadGameCo());
+        StartCoroutine(LoadGameCo());
     }
 
     private IEnumerator LoadGameCo()

@@ -11,7 +11,7 @@ public class UIManager : SingletonBehaviour<UIManager>
     private Dictionary<System.Type, GameObject> m_OpenUIPool = new Dictionary<System.Type, GameObject>();
     private Dictionary<System.Type, GameObject> m_ClosedUIPool = new Dictionary<System.Type, GameObject>();
 
-    public Camera UICamera;
+    public Camera UICamera; // URP 프로젝트 같은 경우 카마라의 스텍을 관리 위함
 
     private BaseUI GetUI<T>(out bool isAlreadyOpen)
     {
