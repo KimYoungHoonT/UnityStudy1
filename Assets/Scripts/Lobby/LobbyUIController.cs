@@ -14,4 +14,12 @@ public class LobbyUIController : MonoBehaviour
         var uiData = new BaseUIData();
         UIManager.Instance.OpenUI<SettingsUI>(uiData);
     }
+
+    public void OnClickProfileButton()
+    {
+        Logger.Log($"{GetType()}::OnClickProfileButton");
+
+        var uiData = new BaseUIData();
+        UIManager.Instance.OpenUI<InventoryUI>(uiData);
+    }
 }

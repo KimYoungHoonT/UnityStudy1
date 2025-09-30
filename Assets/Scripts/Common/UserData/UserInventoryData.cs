@@ -31,6 +31,8 @@ public class UserInventoryData : IUserData
     {
         Logger.Log($"{GetType()}::SetDefaultData");
 
+        // 나중엔 네트워크를 통해서 실제 서버에 저장된 데이터 가져와서 등록하기
+
         //serealNumber => DateTime.Now.ToString("yyyyMMddHHmmss") + Random.Range(0, 9999).ToString("D4")
         InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 11001));
         InventoryItemDataList.Add(new UserItemData(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss") + UnityEngine.Random.Range(0, 9999).ToString("D4")), 11002));
