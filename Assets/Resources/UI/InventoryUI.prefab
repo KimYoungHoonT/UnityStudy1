@@ -3689,6 +3689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UIOpenAnim: {fileID: 0}
   InventoryScrollList: {fileID: 4297591513047932391}
+  SortButtonText: {fileID: 7206056449295334989}
 --- !u!1 &6885175925510113217
 GameObject:
   m_ObjectHideFlags: 0
@@ -4043,9 +4044,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7729103544603833493}
         m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnClickSortButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

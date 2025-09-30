@@ -7,7 +7,7 @@ public class LobbyUIController : MonoBehaviour
         UIManager.Instance.EnableGoodsUI(true);
     }
 
-    public void OnClickSettingButton()
+    public void OnClickSettingButton() // 설정 버튼 연결
     {
         Logger.Log($"{GetType()}::OnClickSettingButton");
 
@@ -15,7 +15,7 @@ public class LobbyUIController : MonoBehaviour
         UIManager.Instance.OpenUI<SettingsUI>(uiData);
     }
 
-    public void OnClickProfileButton()
+    public void OnClickProfileButton() // 프로필 버튼 연결
     {
         Logger.Log($"{GetType()}::OnClickProfileButton");
 
