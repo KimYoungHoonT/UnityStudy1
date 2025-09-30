@@ -32,6 +32,8 @@ public class TitleManager : MonoBehaviour
             UserDataManager.Instance.SaveUserData();
         }
 
+        AudioManager.Instance.OnLoadUserData();
+
         StartCoroutine(LoadGameCo());
     }
 
