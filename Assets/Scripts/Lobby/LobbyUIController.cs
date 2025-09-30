@@ -4,7 +4,7 @@ public class LobbyUIController : MonoBehaviour
 {
     public void Init()
     {
-
+        UIManager.Instance.EnableGoodsUI(true);
     }
 
     public void OnClickSettingButton()

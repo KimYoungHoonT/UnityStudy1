@@ -32,6 +32,8 @@ public class TitleManager : MonoBehaviour
             UserDataManager.Instance.SaveUserData();
         }
 
+        UIManager.Instance.EnableGoodsUI(false); // 타이틀 씬에선 굿즈 유아이 안보이게
+
         AudioManager.Instance.OnLoadUserData();
 
         StartCoroutine(LoadGameCo());
