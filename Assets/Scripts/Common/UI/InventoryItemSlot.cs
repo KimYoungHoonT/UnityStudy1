@@ -3,13 +3,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
 
-public class InventoryItemSlotData : InfiniteScrollData
+public class InventoryItemSlotData : InfiniteScrollData  // 인피니티 스크롤에 들어가는 아이템들의 실질적인 데이터 부분
 {
     public long SerialNumber;
     public int ItemId; // 11001
 }
 
-public class InventoryItemSlot : InfiniteScrollItem
+public class InventoryItemSlot : InfiniteScrollItem // 인피니티 스크롤에 들어가는 아이템 그 자체
 {
     public Image _itemGradeBg;
     public Image _itemIcon;
