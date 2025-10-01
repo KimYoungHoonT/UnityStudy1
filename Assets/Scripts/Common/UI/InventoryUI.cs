@@ -10,6 +10,13 @@ public enum InventorySortType
 
 public class InventoryUI : BaseUI
 {
+    public EquippedItemSlot weaponSlot;
+    public EquippedItemSlot shieldSlot;
+    public EquippedItemSlot chestAarmorSlot;
+    public EquippedItemSlot bootsSlot;
+    public EquippedItemSlot glovesSlot;
+    public EquippedItemSlot accessorySlot;
+
     public InfiniteScroll InventoryScrollList;
     public TextMeshProUGUI SortButtonText;
 
@@ -19,8 +26,73 @@ public class InventoryUI : BaseUI
     {
         base.SetInfo(uiData);
 
+        SetEquippedItems();
         SetInventory();
         SortInventory();
+    }
+
+    private void SetEquippedItems()
+    {
+        UserInventoryData userInventoryData = UserDataManager.Instance.GetUserData<UserInventoryData>();
+        if (userInventoryData == null)
+        {
+            Logger.LogError("UserInventoryData does not exist.");
+            return;
+        }
+
+        if (userInventoryData.EquippedWeaponData != null)
+        {
+            weaponSlot.SetItem(userInventoryData.EquippedWeaponData);
+        }
+        else
+        {
+            weaponSlot.ClearItem();
+        }
+
+        if (userInventoryData.EquippedShieldData != null)
+        {
+            shieldSlot.SetItem(userInventoryData.EquippedShieldData);
+        }
+        else
+        {
+            shieldSlot.ClearItem();
+        }
+
+        if (userInventoryData.EquippedChestArmorData != null)
+        {
+            chestAarmorSlot.SetItem(userInventoryData.EquippedChestArmorData);
+        }
+        else
+        {
+            chestAarmorSlot.ClearItem();
+        }
+
+        if (userInventoryData.EquippedBootsData != null)
+        {
+            bootsSlot.SetItem(userInventoryData.EquippedBootsData);
+        }
+        else
+        {
+            bootsSlot.ClearItem();
+        }
+
+        if (userInventoryData.EquippedGlovesData != null)
+        {
+            glovesSlot.SetItem(userInventoryData.EquippedGlovesData);
+        }
+        else
+        {
+            glovesSlot.ClearItem();
+        }
+
+        if (userInventoryData.EquippedAccessoryData != null)
+        {
+            accessorySlot.SetItem(userInventoryData.EquippedAccessoryData);
+        }
+        else
+        {
+            accessorySlot.ClearItem();
+        }
     }
 
     private void SetInventory()

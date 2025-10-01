@@ -46,4 +46,14 @@ public class InventoryItemSlot : InfiniteScrollItem // 인피니티 스크롤에 들어가�
             _itemIcon.sprite = Sprite.Create(itemIconTexture, new Rect(0, 0, itemIconTexture.width, itemIconTexture.height), new Vector2(1f, 1f));
         }
     }
+    
+    public void OnClickInventoryItemSlot()
+    {
+        EquipmentUIData uIData = new EquipmentUIData();
+        uIData.SerialNumber = m_inventoryItemSlotData.SerialNumber;
+        uIData.ItemId = m_inventoryItemSlotData.ItemId;
+
+        UIManager.Instance.OpenUI<EquipmentUI>(uIData);
+    }
+
 }
